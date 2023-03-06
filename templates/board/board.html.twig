@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div>
+            <h1>Votre tableau Todo List</h1>
+            <h3>Gérez tous vos tickets simplement</h3>
+            <br />
+        </div>
+
+        <hr>
+
+        <h4>Votre liste de tâches</h4>
+
+        <div class="container-fluid d-flex flex-wrap">
+            {% for task in tasks %}
+            <div class="card col-5 m-1" style="width: 18rem; height: 18rem;">
+                <div class="card-header d-flex justify-content-between">
+                    <h4 class="card-title">{{ task.title }}</h4>
+                    <h4 class="">
+                        {% if task.hasDeadLine %}
+                            <span><i class="fa-regular fa-clock"></i></span>
+                        {% endif %} 
+                    </h4>
+                </div>
+                <div class="card-body p-1 col">
+                    <p class="card-text">{{ task.content }}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    {% if task.hasDeadLine == true %}
+                        {% if task.deadLine | date('d-m-Y') < "now"|date_modify("+1 week") | date('d-m-Y') %}
+                            <p>Le délais approche!</p>
+                        {% elseif task.deadLine | date('d-m-Y') > "now"| date('d-m-Y') %}
+                            <p>Le délais à été dépassé</p>
+                        {% endif %}
+                        <p>Date Limite: {{ task.deadLine | date('d-m-Y') }}</p>
+                    {% endif %}
+                </div>
+                <div class="container d-flex p-1 justify-content-evenly">
+                    <form action="{{ path('task_toggle_isDone', {'id' : task.id }) }}">
+                        <button class="btn btn-success btn-sm pull-right">
+                            {% if not task.isDone %}
+                                Terminer
+                            {% else %}
+                                Marquer non terminée
+                            {% endif %}
+                        </button>
+                    </form>
+                    <form action="{{ path('task_delete', {'id' : task.id }) }}">
+                        <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
+                    </form>
+                    <form action="{{ path('task_edit', {'id' : task.id }) }}">
+                        <button class="btn btn-info btn-sm pull-right">Modifier</button>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    Il n'y a pas encore de tâche enregistrée.
+                </div>
+            {% endfor %}
+        </div>
+
+        <br/>
+
+        <div class="container-fluid d-flex justify-content-end">
+            <a href="{{ path('task_create') }}" class="btn btn-primary m-1">Créer une nouvelle tâche</a>
+            <a href="{{ path('task_done_board') }}" class="btn btn-danger m-1">Consulter les tâches terminées</a>
+        </div>
+
+    </div>
+
+{% endblock %}

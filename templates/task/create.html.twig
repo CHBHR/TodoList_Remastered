@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Créer une nouvelle tâche</h1>
+    <div class="row col-5">
+        {{ form_start(form, {'action' : path('task_create')}) }}
+            <div class="mb-3">
+                {{ form_row(form.title) }}
+            </div>
+            <div class="mb-3">
+                {{ form_row(form.content) }}
+            </div>
+            <div class="mb-3">
+                {{ form_row(form.hasDeadLine) }}
+            </div>
+            <div class="mb-3">
+                {{ form_row(form.deadLine) }}
+            </div>
+
+            <button type="submit" class="btn btn-success pull-right">Ajouter</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

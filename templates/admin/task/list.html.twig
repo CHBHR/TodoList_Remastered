@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+            
+        <h1>liste des tâches orphelines</h1>
+
+        <hr>
+
+        <div class="container-fluid d-flex flex-wrap">
+            {% for task in tasks %}
+            <div class="card col-5 m-1" style="width: 18rem; height: 18rem;">
+                <div class="card-header d-flex justify-content-between">
+                    <h4 class="card-title">{{ task.title }}</h4>
+                    <h4 class="">
+                        {% if task.hasDeadLine %}
+                            <span><i class="fa-regular fa-clock"></i></span>
+                        {% endif %} 
+                    </h4>
+                </div>
+                <div class="card-body p-1 col">
+                    <p class="card-text">{{ task.content }}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    {% if task.hasDeadLine == true %}
+                        <p>Date Limite: {{ task.deadLine | date('d-m-Y') }}</p>
+                    {% endif %}
+                    <div class="container d-flex p-1 justify-content-evenly">
+                        <p class="">
+                            {% if not task.isDone %}
+                                Tâche non terminée
+                            {% else %}
+                                Tâche terminée
+                            {% endif %}
+                        </p>
+                        <form action="{{ path('admin_task_delete', {'id' : task.id }) }}">
+                            <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    Il n'y a pas encore de tâche orphelines.
+                </div>
+            {% endfor %}
+        </div>
+
+        <br/>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tableau de bord Administrateur</h1>
+
+    <div>
+        <a href="{{ path('admin_user_list') }}" class="btn btn-info">Liste des utilisateurs</a>
+        <a href="{{ path('admin_task_list') }}" class="btn btn-info">Tâches orphelines</a>
+    </div>
+{% endblock %}

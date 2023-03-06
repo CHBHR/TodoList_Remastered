@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Inscription</h1>
+
+    {{ form_start(form, {'action' : path('signup')}) }}
+    
+    <div class="mb-3">
+        {{ form_row(form.email) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.username) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.password) }}
+    </div>
+    
+        <button type="submit" class="btn btn-success pull-right">S'inscrire</button>
+    {{ form_end(form) }}
+
+    <div>
+        <p>
+            Vous avez déjà un comtpe? <a href="{{ path('login') }}" class="">Connectez-vous ici</a>.
+        </p>
+    </div>
+
+{% endblock %}

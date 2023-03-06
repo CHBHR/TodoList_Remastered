@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Editer votre tâche</h1>
+    <div class="row">
+        {{ form_start(form, {'action' : path('task_edit', { 'id' : task.id })}) }}
+            <div class="mb-3">
+                {{ form_row(form.title) }}
+            </div>
+            <div class="mb-3">
+                {{ form_row(form.content) }}
+            </div>
+            <div class="mb-3">
+                {{ form_row(form.hasDeadLine) }}
+            </div>
+            <div class="mb-3">
+                {{ form_row(form.deadLine) }}
+            </div>
+
+            <button type="submit" class="btn btn-success pull-right">Modifier</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

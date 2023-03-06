@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div>
+            <h1>Votre Tâches terminées</h1>
+            <h3>Consultez votre progès</h3>
+            <hr>
+            <br />
+        </div>
+
+        <hr>
+
+        <h4>Votre liste de tâches terminées</h4>
+
+        <div class="container d-flex flex-wrap">
+            {% for task in tasks %}
+            <div class="card col-5 m-1" style="width: 18rem;">
+                <div class="card-header d-flex justify-content-between">
+                    <h4 class="card-title">{{ task.title }}</h4>
+                    <h4 class="">
+                        <span><i class="fa-solid fa-xmark"></i></span>
+                    </h4>
+                </div>
+                <div class="card-body p-1">
+                        <p class="card-text">{{ task.content }}</p>
+                        {% if task.hasDeadLine == true %}
+                            <p>Date Limite: {{ task.deadLine | date('d-m-Y') }}</p>
+                        {% endif %}
+                </div>
+                <div class="container d-flex p-1 justify-content-evenly">
+                    {# {{ path('task_toggle_isDone', {'id' : task.id }) }} #}
+                    <form action="{{ path('task_toggle_isDone', {'id' : task.id }) }}">
+                        <button class="btn btn-success btn-sm pull-right">
+                            {% if not task.isDone %}
+                                Terminer
+                            {% else %}
+                                Marquer non terminée
+                            {% endif %}
+                        </button>
+                    </form>
+                    <form action="{{ path('task_delete', {'id' : task.id }) }}">
+                        <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    Il n'y a pas encore de tâche terminée.
+                </div>
+            {% endfor %}
+        </div>
+
+        <br/>
+
+        <div class="container-fluid d-flex justify-content-end">
+            <a href="{{ path('task_board') }}" class="btn btn-primary">Revenir au tableau</a>
+        </div>
+
+    </div>
+
+{% endblock %}
