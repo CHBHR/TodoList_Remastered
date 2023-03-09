@@ -4,7 +4,7 @@ namespace App\Controller\Task;
 
 use App\Entity\Task;
 use App\Form\TaskType;
-use DateTimeImmutable;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +26,7 @@ class CreateTaskController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $dateTime = new DateTimeImmutable();
+            $dateTime = new DateTime();
             // On récupère le user et on l'assigne à la task avant le persist
             $user = $this->getUser();
             if($user === false)

@@ -16,7 +16,7 @@ class TaskTest extends TestCase
     public function setUp(): void
     {
         $this->task = new Task();
-        $this->date = new \DateTimeImmutable();
+        $this->date = new \DateTime();
     }
 
     public function testCreatedAt()

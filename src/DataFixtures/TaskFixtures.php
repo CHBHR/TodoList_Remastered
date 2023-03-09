@@ -12,12 +12,12 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $createdAt = new \DateTimeImmutable();
+        $createdAt = new \DateTime();
         $interval = 'P3D';
         $deadline = $createdAt->add(new DateInterval($interval));
 
         $task1 = new Task();
-        $task1->setUser($this->getReference('user1'));
+        $task1->setUser($this->getReference('user2'));
         $task1->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque molestie placerat metus, pellentesque tristique massa maximus sodales.');
         $task1->setCreatedAt($createdAt);
         $task1->setTitle('Task 1 - not done without deadline');
@@ -26,7 +26,7 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($task1);
 
         $task2 = new Task();
-        $task2->setUser($this->getReference('user1'));
+        $task2->setUser($this->getReference('user2'));
         $task2->setContent('Curabitur egestas ex ac metus blandit, in imperdiet justo porta. Donec commodo magna at metus lobortis pharetra. Donec consectetur tristique rutrum.');
         $task2->setCreatedAt($createdAt);
         $task2->setTitle('Task 2 - done without deadline');
@@ -35,7 +35,7 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($task2);
 
         $task3 = new Task();
-        $task3->setUser($this->getReference('user1'));
+        $task3->setUser($this->getReference('user2'));
         $task3->setContent('Nulla tortor mauris.');
         $task3->setCreatedAt($createdAt);
         $task3->setTitle('Task 3 - not done with deadline');
@@ -45,7 +45,7 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($task3);
 
         $task4 = new Task();
-        $task4->setUser($this->getReference('user2'));
+        $task4->setUser($this->getReference('user1'));
         $task4->setContent('Donec vitae convallis massa.');
         $task4->setCreatedAt($createdAt);
         $task4->setTitle('Task 4 - not done with deadline');

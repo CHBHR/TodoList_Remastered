@@ -2,47 +2,33 @@
 
 namespace App\Tests\Controller\Task;
 
-use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\Controller\AbstractTestController;
 
-class CreateTaskControllerTest extends WebTestCase
+class CreateTaskControllerTest extends AbstractTestController
 {
     public function testCreateTaskRedirectsIfNotConnected()
     {
-        $client = static::createClient();
-        $client->request('GET', '/tasks/create');
-        $crawler = $client->followRedirect();
+        $this->client->request('GET', '/tasks/create');
+        $this->client->followRedirect();
         $this->assertSelectorTextContains('h1', 'Connexion');
     }
 
     public function testCreateTaskPageIsUpWhenConnected()
     {
-        $client = static::createClient();
-        $userRepository = static::getContainer()->get(UserRepository::class);
+        $this->loginAsUser();
 
-        // retrieve the test user
-        $testUser = $userRepository->findOneByEmail('user2@test.com');
-
-        // simulate $testUser being logged in
-        $client->loginUser($testUser);
-
-        $client->request('GET', '/tasks/create');
+        $this->client->request('GET', '/tasks/create');
         $this->assertSelectorTextContains('h1', 'Créer une nouvelle tâche');
     }
 
     //add test to get flash message
     public function testCreateTaskSuccess()
     {
-        $client = static::createClient();
-        $userRepository = static::getContainer()->get(UserRepository::class);
+        $this->loginAsUser();
 
-        // retrieve the test user
-        $testUser = $userRepository->findOneByEmail('user2@test.com');
+        $datetime = new \DateTime();
 
-        // simulate $testUser being logged in
-        $client->loginUser($testUser);
-
-        $crawler = $client->request('GET', '/tasks/create');
+        $crawler = $this->client->request('GET', '/tasks/create');
 
         $buttonCrawlerNode = $crawler->selectButton("Ajouter");
 
@@ -51,12 +37,18 @@ class CreateTaskControllerTest extends WebTestCase
         $form['task[title]']='titre de test';
         $form['task[content]']='contenu de test';
         $form['task[hasDeadLine]']=false;
-        // $form['task[deaLine]']='';
+        //Does not work
+        // $form['task[deadLine][year]']=$datetime->format('Y');
+        // $form['task[deadLine][month]']=$datetime->format('m');
+        // $form['task[deadLine][day]']=$datetime->format('d');
 
-        $client->submit($form);
+        // var_dump($test);
+        // die();
+
+        $this->client->submit($form);
 
         $this->assertResponseRedirects('/board');
-        $crawler = $client->followRedirect();
+        $crawler = $this->client->followRedirect();
 
         $this->assertStringContainsString("La tâche a été bien été ajoutée.", $crawler->text());
         $this->assertSelectorTextContains('h1', 'Votre tableau Todo List');
@@ -65,16 +57,9 @@ class CreateTaskControllerTest extends WebTestCase
     //add check to show flash message
     public function testCreateTaskFailure()
     {
-        $client = static::createClient();
-        $userRepository = static::getContainer()->get(UserRepository::class);
+        $this->loginAsUser();
 
-        // retrieve the test user
-        $testUser = $userRepository->findOneByEmail('user2@test.com');
-
-        // simulate $testUser being logged in
-        $client->loginUser($testUser);
-
-        $crawler = $client->request('GET', '/tasks/create');
+        $crawler = $this->client->request('GET', '/tasks/create');
 
         $buttonCrawlerNode = $crawler->selectButton("Ajouter");
 
@@ -86,7 +71,7 @@ class CreateTaskControllerTest extends WebTestCase
         // $form['task[deaLine]']='';
 
         //Will create an error
-        $crawler = $client->submit($form);
+        $crawler = $this->client->submit($form);
 
         $this->assertSelectorTextContains('h1', 'Symfony Exception');
         $this->assertSelectorTextNotContains('h1', 'Votre tableau Todo List');
