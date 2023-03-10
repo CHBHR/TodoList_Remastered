@@ -2,24 +2,26 @@
 
 namespace App\Tests\Controller\Authentication;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\Controller\AbstractTestController;
 
-class SignUpControllerTest extends WebTestCase
+class SignUpControllerTest extends AbstractTestController
 {
+    /**
+     * @test
+     */
     public function testSignupPageIsUp()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/signup');
+        $this->client->request('GET', '/signup');
 
         $this->assertSelectorTextContains('h1', 'Inscription');
     }
 
-    //add test to get flash message
+    /**
+     * @test
+     */
     public function testSignupSuccess()
     {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/signup');
+        $crawler = $this->client->request('GET', '/signup');
 
         $buttonCrawlerNode = $crawler->selectButton("S'inscrire");
 
@@ -30,21 +32,22 @@ class SignUpControllerTest extends WebTestCase
         $form['sign_up[password][first]']='test';
         $form['sign_up[password][second]']='test';
 
-        $client->submit($form);
+        $this->client->submit($form);
 
         $this->assertResponseRedirects('/home');
-        $client->followRedirect();
+        $crawler = $this->client->followRedirect();
 
         $this->assertSelectorTextNotContains('h1', 'Bonjour');
         $this->assertSelectorTextContains('h1', 'Bienvenue sur Todo List');
+        $this->assertStringContainsString("Vous êtes bien inscrit.", $crawler->text());
     }
 
-    //add check to show flash message
+    /**
+     * @test
+     */
     public function testSignupFailure()
     {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/signup');
+        $crawler = $this->client->request('GET', '/signup');
 
         $buttonCrawlerNode = $crawler->selectButton("S'inscrire");
 
@@ -55,7 +58,7 @@ class SignUpControllerTest extends WebTestCase
         $form['sign_up[password][first]']='test';
         $form['sign_up[password][second]']='test2';
 
-        $client->submit($form);
+        $this->client->submit($form);
 
         $this->assertSelectorTextNotContains('h1', 'Bienvenue sur Todo List');
         $this->assertSelectorTextContains('h1', 'Inscription');

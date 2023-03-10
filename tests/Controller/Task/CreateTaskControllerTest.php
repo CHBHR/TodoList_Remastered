@@ -6,6 +6,9 @@ use App\Tests\Controller\AbstractTestController;
 
 class CreateTaskControllerTest extends AbstractTestController
 {
+    /**
+     * @test
+     */
     public function testCreateTaskRedirectsIfNotConnected()
     {
         $this->client->request('GET', '/tasks/create');
@@ -13,6 +16,9 @@ class CreateTaskControllerTest extends AbstractTestController
         $this->assertSelectorTextContains('h1', 'Connexion');
     }
 
+    /**
+     * @test
+     */
     public function testCreateTaskPageIsUpWhenConnected()
     {
         $this->loginAsUser();
@@ -21,12 +27,14 @@ class CreateTaskControllerTest extends AbstractTestController
         $this->assertSelectorTextContains('h1', 'Créer une nouvelle tâche');
     }
 
-    //add test to get flash message
+    /**
+     * @test
+     */
     public function testCreateTaskSuccess()
     {
         $this->loginAsUser();
 
-        $datetime = new \DateTime();
+        //$datetime = new \DateTime();
 
         $crawler = $this->client->request('GET', '/tasks/create');
 
@@ -54,7 +62,9 @@ class CreateTaskControllerTest extends AbstractTestController
         $this->assertSelectorTextContains('h1', 'Votre tableau Todo List');
     }
 
-    //add check to show flash message
+    /**
+     * @test
+     */
     public function testCreateTaskFailure()
     {
         $this->loginAsUser();

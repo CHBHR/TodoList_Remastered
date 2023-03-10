@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataFixtures;
+namespace App\Test\DataFixtures;
 
 use App\Entity\Task;
 use DateInterval;
@@ -62,6 +62,16 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
         $task5->setIsDone(false);
         $task5->setHasDeadLine(false);
         $manager->persist($task5);
+
+        $task6 = new Task();
+        $task6->setUser($this->getReference('user3'));
+        $task6->setContent('Donec vitae convallis massa.');
+        $task6->setCreatedAt($createdAt);
+        $task6->setTitle('Task 6 - not done with deadline');
+        $task6->setIsDone(false);
+        $task6->setHasDeadLine(true);
+        $task6->setDeadLine($deadline);
+        $manager->persist($task6);
         
         $manager->flush();
     }

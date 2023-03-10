@@ -25,7 +25,7 @@ class ToggleTaskControllerTest extends AbstractTestController
     /** 
      * @test 
     */
-    public function testToggleTask()
+    public function testToggleTaskToDone()
     {
         $this->loginAsUser();
 
@@ -34,12 +34,34 @@ class ToggleTaskControllerTest extends AbstractTestController
         $taskTestId = $taskTest->getId();
         $taskTestName =  $taskTest->getTitle();
         
-        $crawler = $this->client->request('GET', 'tasks/'.$taskTestId.'/toggle');
+        $crawler = $this->client->request('GET', '/tasks/'.$taskTestId.'/toggle');
 
         $this->assertResponseRedirects('/board');
         $crawler = $this->client->followRedirect();
 
         $this->assertStringContainsString("La tâche \"".$taskTestName."\" a bien été marquée comme faite.", $crawler->text());
+        $this->assertSelectorTextContains('h1', 'Votre tableau Todo List');
+        
+    }
+
+    /** 
+     * @test 
+    */
+    public function testToggleTaskToNotDone()
+    {
+        $this->loginAsUser();
+
+        $taskRepository = static::getContainer()->get(TaskRepository::class);
+        $taskTest = $taskRepository->findOneBy(['title'=>'Task 2 - done without deadline']);
+        $taskTestId = $taskTest->getId();
+        $taskTestName =  $taskTest->getTitle();
+        
+        $crawler = $this->client->request('GET', '/tasks/'.$taskTestId.'/toggle');
+
+        $this->assertResponseRedirects('/board');
+        $crawler = $this->client->followRedirect();
+
+        $this->assertStringContainsString("La tâche \"".$taskTestName."\" a bien été remise sur votre tableau.", $crawler->text());
         $this->assertSelectorTextContains('h1', 'Votre tableau Todo List');
     }
 }
