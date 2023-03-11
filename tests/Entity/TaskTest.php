@@ -4,7 +4,6 @@ namespace App\Tests\Entity;
 
 use App\Entity\Task;
 use App\Entity\User;
-use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
 class TaskTest extends TestCase

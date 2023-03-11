@@ -2,15 +2,13 @@
 
 namespace App\Tests\Controller\Authentication;
 
-use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\Controller\AbstractTestController;
 
-class LoginControllertest extends WebTestCase
+class LoginControllertest extends AbstractTestController
 {
     public function testLoginWithValidCredentials()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/login');
+        $crawler = $this->client->request('GET', '/login');
 
         // select the button
         $buttonCrawlerNode = $crawler->selectButton('Connexion');
@@ -28,8 +26,7 @@ class LoginControllertest extends WebTestCase
 
     public function testLoginWithInvalidCredentials()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/login');
+        $crawler = $this->client->request('GET', '/login');
 
         // select the button
         $buttonCrawlerNode = $crawler->selectButton('Connexion');
@@ -47,36 +44,22 @@ class LoginControllertest extends WebTestCase
 
     public function testHomepageWhileLoggedIn()
     {
-        $client = static::createClient();
-        $userRepository = static::getContainer()->get(UserRepository::class);
+        $this->loginAsUser();
 
-        // retrieve the test user
-        $testUser = $userRepository->findOneByEmail('user2@test.com');
-
-        // simulate $testUser being logged in
-        $client->loginUser($testUser);
-
-        $client->request('GET', '/home');
+        $this->client->request('GET', '/home');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h4', 'Bonjour TestUser2');
     }
 
     public function testLogout()
     {
-        $client = static::createClient();
-        $userRepository = static::getContainer()->get(UserRepository::class);
+        $this->loginAsUser();
 
-        // retrieve the test user
-        $testUser = $userRepository->findOneByEmail('user2@test.com');
-
-        // simulate $testUser being logged in
-        $client->loginUser($testUser);
-
-        $client->request('GET', '/home');
+        $this->client->request('GET', '/home');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h4', 'Bonjour TestUser2');
 
-        $client->request('GET', '/logout');
+        $this->client->request('GET', '/logout');
         $this->assertSelectorNotExists('h4', 'Bonjour TestUser2');
     }
 }
