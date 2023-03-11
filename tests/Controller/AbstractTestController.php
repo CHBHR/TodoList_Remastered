@@ -32,12 +32,4 @@ abstract class AbstractTestController extends WebTestCase
         $testUser = $userRepository->findOneByEmail('user2@test.com');
         return $this->client->loginUser($testUser);
     }
-
-    // public function testRedirectsIfNotConnected(string $method,string $url)
-    // {
-    //     $this->client->request($method, $url);
-    //     $this->client->followRedirect();
-    //     return $this->assertSelectorTextContains('h1', 'Connexion');
-    // }
-
 }
