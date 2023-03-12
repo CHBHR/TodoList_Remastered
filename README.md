@@ -77,7 +77,8 @@ Code quality has been analyzed with Codacy.
 
 Code coverage was analyzed using PHPUnit and the HTML report.
 
-The different issues can be found on the old Github repository.
+The different issues can be found on the old Github repository (https://github.com/CHBHR/TodoList/issues?q=is%3Aissue).
+They are the same used for the updated project.
 
 All the documentation can be consulted here.
 
