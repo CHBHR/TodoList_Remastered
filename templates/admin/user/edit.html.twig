@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Modifier un utilisateur</h1>
     <div class="row">
-        {{ form_start(form, {'action' : path('admin_user_create')}) }}
+        {{ form_start(form, {'action' : path('admin_user_edit', { 'id' : user.id })}) }}
         <div class="mb-3">
             {{ form_row(form.username) }}
         </div>
@@ -17,7 +17,7 @@
             {{ form_row(form.roles) }}
         </div>
 
-            <button type="submit" class="btn btn-success pull-right">Ajouter</button>
+            <button type="submit" class="btn btn-success pull-right">Modifier</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

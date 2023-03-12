@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\TaskRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
@@ -21,7 +20,7 @@ class Task
     private ?string $content = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTime $createdAt = null;
 
     #[ORM\Column]
     private ?bool $isDone = null;
@@ -29,8 +28,8 @@ class Task
     #[ORM\Column]
     private ?bool $hasDeadLine = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $deadLine = null;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTime $deadLine = null;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     private ?User $user = null;
@@ -64,12 +63,12 @@ class Task
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -100,12 +99,12 @@ class Task
         return $this;
     }
 
-    public function getDeadLine(): ?\DateTimeInterface
+    public function getDeadLine(): ?\DateTime
     {
         return $this->deadLine;
     }
 
-    public function setDeadLine(?\DateTimeInterface $deadLine): self
+    public function setDeadLine(?\DateTime $deadLine): self
     {
         $this->deadLine = $deadLine;
 

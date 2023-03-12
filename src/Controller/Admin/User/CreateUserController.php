@@ -33,7 +33,6 @@ class CreateUserController extends AbstractController
 
             $this->addFlash('success', "L'utilisateur a bien été ajouté.");
 
-            // changed the redirection to avoid user on user list page
             return $this->redirectToRoute('admin_user_list');
         }
 
