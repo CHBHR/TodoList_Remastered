@@ -78,6 +78,6 @@ The old project repository can be consulted here:
 https://github.com/CHBHR/TodoList
 
 Because of the amount of issues and bugs while migrating this project, the old and confusing code architecture and the time spent on updating, I decided to transfer all the functionnalities to anew project.
-Thus saving on time and money.
+Thus saving on developpement time, maintainability and better execution management.
 
 All the information on the developpement can be found here:
