@@ -70,6 +70,21 @@ You can generate the coverage repport with this command
 ```bash
 php vendor/bin/phpunit --coverage-html coverage
 ```
+
+## Resources
+
+Code quality has been analyzed with Codacy.
+
+Code coverage was analyzed using PHPUnit and the HTML report.
+
+The different issues can be found on the old Github repository.
+
+All the documentation can be consulted here.
+
+## Versioning
+
+GitHub was used for versioning the project.
+
 ## Old branch
 
 This project was a reboot within an up to date version of PHP / Symfony of the old todolist project.
