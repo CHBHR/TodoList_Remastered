@@ -6,9 +6,9 @@ use App\Entity\User;
 use App\Form\SignUpType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class SignUpController extends AbstractController
 {
@@ -25,14 +25,14 @@ class SignUpController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $hashedPassword = $passwordHasher->hashPassword(
                 $user,
-                $form["password"]->getData()
+                $form['password']->getData()
             );
             $user->setPassword($hashedPassword);
             $user->setRoles(['ROLE_USER']);
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', "Vous êtes bien inscrit.");
+            $this->addFlash('success', 'Vous êtes bien inscrit.');
 
             // changed the redirection to avoid user on user list page
             return $this->redirectToRoute('homepage');

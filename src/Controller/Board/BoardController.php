@@ -14,8 +14,9 @@ class BoardController extends AbstractController
     {
         $user = $this->getUser();
         $taskList = $entityManager->getRepository(Task::class)->findOpenTasksByUser($user);
+
         return $this->render('board/board.html.twig', [
-            'tasks' => $taskList
+            'tasks' => $taskList,
         ]);
     }
 }

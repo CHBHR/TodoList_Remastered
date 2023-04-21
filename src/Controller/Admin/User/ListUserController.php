@@ -17,5 +17,4 @@ class ListUserController extends AbstractController
             ['users' => $entityManager->getRepository(User::class)->findAll()]
         );
     }
-
 }

@@ -5,9 +5,9 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class TaskType extends AbstractType
 {
@@ -19,7 +19,7 @@ class TaskType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'Titre:',
-                    'attr' => array('class' => 'form-control')
+                    'attr' => ['class' => 'form-control'],
                     ]
             )
             ->add(
@@ -27,7 +27,7 @@ class TaskType extends AbstractType
                 TextareaType::class,
                 [
                     'label' => 'Contenu:',
-                    'attr' => array('class' => 'form-control')
+                    'attr' => ['class' => 'form-control'],
                     ]
             )
             ->add(
@@ -36,19 +36,19 @@ class TaskType extends AbstractType
                 [
                     'label' => "Ajouter une 'dead-line' ?",
                     'required' => false,
-                    'attr' => array('class' => 'form-check')
+                    'attr' => ['class' => 'form-check'],
                 ]
             )
             ->add(
                 'deadLine',
                 DateType::class,
                 [
-                    'label' => "Date limite",
+                    'label' => 'Date limite',
                     'required' => false,
-                    'data'   => new \DateTime(),
-                    'attr'  => array(
+                    'data' => new \DateTime(),
+                    'attr' => [
                         'min' => ( new \DateTime() )->format('d-m-Y'),
-                        'class' => '')
+                        'class' => ''],
                 ]
             )
         ;
