@@ -45,13 +45,8 @@ class CreateTaskControllerTest extends AbstractTestController
         $form['task[title]']='titre de test';
         $form['task[content]']='contenu de test';
         $form['task[hasDeadLine]']=false;
-        //Does not work
-        // $form['task[deadLine][year]']=$datetime->format('Y');
-        // $form['task[deadLine][month]']=$datetime->format('m');
-        // $form['task[deadLine][day]']=$datetime->format('d');
-
-        // var_dump($test);
-        // die();
+        
+        // Here could go the testing for the deadline
 
         $this->client->submit($form);
 

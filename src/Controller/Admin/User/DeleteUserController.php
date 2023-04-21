@@ -31,12 +31,12 @@ class DeleteUserController extends AbstractController
     }
 
     /**
-     * Supprime l'id de la tache liée à l'utilisateur et met NULL
+     * Supprime l'id de la tache liée à l'utilisateur et met NULL.
      */
     public function anonymiseTasks($user)
     {
         $tasks = $this->entityManager->getRepository(Task::class)->findTasksByUser($user);
-        foreach($tasks as $task){
+        foreach ($tasks as $task) {
             $task->setuser(null);
             $this->entityManager->flush();
         }

@@ -6,9 +6,9 @@ use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class EditUserController extends AbstractController
 {
@@ -22,7 +22,7 @@ class EditUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $hashedPassword = $passwordHasher->hashPassword(
                 $user,
-                $form["password"]->getData()
+                $form['password']->getData()
             );
             $user->setPassword($hashedPassword);
 

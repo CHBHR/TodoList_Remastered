@@ -13,8 +13,9 @@ class ListOrphanTaskController extends AbstractController
     public function showOrphanTaskList(EntityManagerInterface $entityManager)
     {
         $taskList = $entityManager->getRepository(Task::class)->findOrphantTasks();
+
         return $this->render('admin/task/list.html.twig', [
-            'tasks' => $taskList
+            'tasks' => $taskList,
         ]);
     }
 }

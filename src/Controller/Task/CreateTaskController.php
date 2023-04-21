@@ -4,7 +4,6 @@ namespace App\Controller\Task;
 
 use App\Entity\Task;
 use App\Form\TaskType;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +13,7 @@ class CreateTaskController extends AbstractController
 {
     /**
      * Créer une task lié à l'utilisateur
-     * Si aucun utilisateur, la task sera liée à NULL
+     * Si aucun utilisateur, la task sera liée à NULL.
      */
     #[Route('/tasks/create', name: 'task_create')]
     public function createTask(Request $request, EntityManagerInterface $entityManager)
@@ -25,23 +24,20 @@ class CreateTaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $dateTime = new DateTime();
+            $dateTime = new \DateTime();
             // On récupère le user et on l'assigne à la task avant le persist
             $user = $this->getUser();
-            if($user === false)
-            {
+            if (false === $user) {
                 $task->setuser(null);
             } else {
                 $task->setUser($user);
             }
 
             // Check si une deadline a été précisée sinon null
-            if($form["hasDeadLine"]->getData() === true)
-            {
-                $task->setDeadLine($form["deadLine"]->getData());
-            } else if($form["hasDeadLine"]->getData() === false) {
-                $task->setDeadLine(Null);
+            if (true === $form['hasDeadLine']->getData()) {
+                $task->setDeadLine($form['deadLine']->getData());
+            } elseif (false === $form['hasDeadLine']->getData()) {
+                $task->setDeadLine(null);
             }
             $task->setCreatedAt($dateTime);
             $task->setIsDone(false);
@@ -53,8 +49,9 @@ class CreateTaskController extends AbstractController
 
             return $this->redirectToRoute('task_board');
         }
+
         return $this->render('task/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }

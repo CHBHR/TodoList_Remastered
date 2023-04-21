@@ -10,23 +10,27 @@
             <br />
         </div>
 
-        <div class="container d-flex justify-content-evenly">
-            <img class="col-4" src="{{ asset('img/stickynotesbackground.jpg') }}" alt="todo list" style="max-height:20em;">
-            <p class="text-justify col-6">
+        <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-md-evenly">
+            <img class="d-none d-md-block col-md-10 col-lg-4" src="{{ asset('img/stickynotesbackground.jpg') }}" alt="todo list" style="max-height:20em;">
+            <p class="text-justify col-10 col-md-10 col-lg-6">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies tincidunt diam quis rutrum. Sed eget scelerisque nunc. Quisque vel mauris non odio eleifend consequat. Quisque ligula est, pellentesque nec malesuada quis, fermentum non justo. Fusce tempus ut dui id venenatis. Maecenas volutpat dignissim arcu vel vestibulum. Donec venenatis lorem sit amet ipsum posuere, et dapibus libero fermentum. Nunc porttitor gravida arcu, eget auctor quam placerat a. Sed eu mollis neque. Aliquam vehicula libero quam, eu rutrum sem congue quis. Nullam interdum pulvinar risus, sed sagittis ipsum vestibulum sed. In euismod egestas maximus. Duis auctor, elit quis interdum egestas, odio mi gravida nisi, tempus imperdiet augue velit nec elit. Duis sit amet dignissim ipsum, eget molestie eros. Nam aliquam sagittis nisl sed cursus. Duis cursus leo vulputate, suscipit nulla sed, interdum enim.
             </p>
         </div>
 
         <hr>
         
-        <div>
+        <div class="">        
             <p class="text-justify">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies tincidunt diam quis rutrum. Sed eget scelerisque nunc. Quisque vel mauris non odio eleifend consequat. Quisque ligula est, pellentesque nec malesuada quis, fermentum non justo. Fusce tempus ut dui id venenatis. Maecenas volutpat dignissim arcu vel vestibulum. Donec venenatis lorem sit amet ipsum posuere, et dapibus libero fermentum. Nunc porttitor gravida arcu, eget auctor quam placerat a. Sed eu mollis neque. Aliquam vehicula libero quam, eu rutrum sem congue quis. Nullam interdum pulvinar risus, sed sagittis ipsum vestibulum sed. In euismod egestas maximus. Duis auctor, elit quis interdum egestas, odio mi gravida nisi, tempus imperdiet augue velit nec elit. Duis sit amet dignissim ipsum, eget molestie eros. Nam aliquam sagittis nisl sed cursus. Duis cursus leo vulputate, suscipit nulla sed, interdum enim.
             </p>
         </div>
 
         <div class="container">
-            <a href="{{ path('login') }}" class="btn btn-info">Me créer un board</a>
+            {% if app.user %}
+                <a href="{{ path('task_board') }}" class="btn btn-info">Accéder à mon board</a>
+            {% else %}
+                <a href="{{ path('login') }}" class="btn btn-info">Me créer un board</a>
+            {% endif %}
         </div>
     </div>
 

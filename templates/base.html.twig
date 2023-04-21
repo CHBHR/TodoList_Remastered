@@ -18,6 +18,9 @@
         <nav class="navbar navbar-light navbar-fixed-top navbar-expand-lg" style="background-color: #e3f2fd;" role="navigation">
             <div class="container">
                 <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('img/logo.png') }}" alt="logo" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 {% if app.user %}
                     <h4 class="">Bonjour                             
                         {% if 'ROLE_ADMIN' in app.user.getroles() %}
@@ -26,7 +29,7 @@
                         {{ app.user.username }}
                     </h4>
                 {% endif %}
-                <div class="" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         {% if app.user %}
                             {% if 'ROLE_ADMIN' in app.user.getroles() %}

@@ -15,8 +15,8 @@ class ToggleTaskController extends AbstractController
         $task->isIsDone() ? $task->setIsDone(false) : $task->setIsDone(true);
         $entityManager->flush();
 
-        $task->isIsDone() ? 
-            $this->addFlash('success', sprintf('La tâche "%s" a bien été marquée comme faite.', $task->getTitle())) : 
+        $task->isIsDone() ?
+            $this->addFlash('success', sprintf('La tâche "%s" a bien été marquée comme faite.', $task->getTitle())) :
             $this->addFlash('success', sprintf('La tâche "%s" a bien été remise sur votre tableau.', $task->getTitle()));
 
         return $this->redirectToRoute('task_board');

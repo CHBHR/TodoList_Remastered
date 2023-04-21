@@ -3,11 +3,11 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class SignUpType extends AbstractType
 {
@@ -15,31 +15,32 @@ class SignUpType extends AbstractType
     {
         $builder
             ->add(
-                'email', 
-                EmailType::class, 
+                'email',
+                EmailType::class,
                 [
                     'label' => 'Email:',
-                    'attr' => array('class' => 'form-control')
+                    'attr' => ['class' => 'form-control'],
                     ]
-                )
+            )
             ->add(
-                'username', 
-                TextType::class, 
+                'username',
+                TextType::class,
                 [
                     'label' => "Nom d'utilisateur:",
-                    'attr' => array('class' => 'form-control')
+                    'attr' => ['class' => 'form-control'],
                     ]
-                )
+            )
             ->add(
-                'password', 
-                RepeatedType::class, 
+                'password',
+                RepeatedType::class,
                 [
                     'type' => PasswordType::class,
                     'invalid_message' => 'Les deux mots de passe doivent correspondre.',
                     'required' => true,
-                    'first_options'  => ['label' => 'Mot de passe:','attr' => array('class' => 'form-control')],
-                    'second_options' => ['label' => 'Confirmer le mot de passe:','attr' => array('class' => 'form-control')],
-            ])
+                    'first_options' => ['label' => 'Mot de passe:', 'attr' => ['class' => 'form-control']],
+                    'second_options' => ['label' => 'Confirmer le mot de passe:', 'attr' => ['class' => 'form-control']],
+            ]
+            )
         ;
     }
 }
