@@ -15,7 +15,7 @@ class SignUpController extends AbstractController
     /**
      * @Route("/signup", name="signup")
      */
-    public function signUp(Request $request,UserPasswordHasherInterface $passwordHasher,EntityManagerInterface $entityManager)
+    public function signUp(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager)
     {
         $user = new User();
 

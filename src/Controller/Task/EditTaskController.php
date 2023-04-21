@@ -19,11 +19,10 @@ class EditTaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($form["hasDeadLine"]->getData() === true)
-            {
+            if($form["hasDeadLine"]->getData() === true) {
                 $task->setDeadLine($form["deadLine"]->getData());
-            } else if($form["hasDeadLine"]->getData() === false) {
-                $task->setDeadLine(Null);
+            } elseif($form["hasDeadLine"]->getData() === false) {
+                $task->setDeadLine(null);
             }
             $entityManager->flush();
 

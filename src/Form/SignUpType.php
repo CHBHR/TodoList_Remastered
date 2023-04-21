@@ -15,31 +15,32 @@ class SignUpType extends AbstractType
     {
         $builder
             ->add(
-                'email', 
-                EmailType::class, 
+                'email',
+                EmailType::class,
                 [
                     'label' => 'Email:',
                     'attr' => array('class' => 'form-control')
                     ]
-                )
+            )
             ->add(
-                'username', 
-                TextType::class, 
+                'username',
+                TextType::class,
                 [
                     'label' => "Nom d'utilisateur:",
                     'attr' => array('class' => 'form-control')
                     ]
-                )
+            )
             ->add(
-                'password', 
-                RepeatedType::class, 
+                'password',
+                RepeatedType::class,
                 [
                     'type' => PasswordType::class,
                     'invalid_message' => 'Les deux mots de passe doivent correspondre.',
                     'required' => true,
                     'first_options'  => ['label' => 'Mot de passe:','attr' => array('class' => 'form-control')],
                     'second_options' => ['label' => 'Confirmer le mot de passe:','attr' => array('class' => 'form-control')],
-            ])
+            ]
+            )
         ;
     }
 }

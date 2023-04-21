@@ -36,7 +36,7 @@ class DeleteUserController extends AbstractController
     public function anonymiseTasks($user)
     {
         $tasks = $this->entityManager->getRepository(Task::class)->findTasksByUser($user);
-        foreach($tasks as $task){
+        foreach($tasks as $task) {
             $task->setuser(null);
             $this->entityManager->flush();
         }

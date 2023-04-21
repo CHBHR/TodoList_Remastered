@@ -15,29 +15,32 @@ class TaskType extends AbstractType
     {
         $builder
             ->add(
-                'title', 
-                TextType::class, 
+                'title',
+                TextType::class,
                 [
                     'label' => 'Titre:',
                     'attr' => array('class' => 'form-control')
-                    ])
+                    ]
+            )
             ->add(
-                'content', 
-                TextareaType::class, 
+                'content',
+                TextareaType::class,
                 [
                     'label' => 'Contenu:',
                     'attr' => array('class' => 'form-control')
-                    ])
+                    ]
+            )
             ->add(
-                'hasDeadLine', 
+                'hasDeadLine',
                 CheckboxType::class,
                 [
                     'label' => "Ajouter une 'dead-line' ?",
                     'required' => false,
                     'attr' => array('class' => 'form-check')
-                ])
+                ]
+            )
             ->add(
-                'deadLine', 
+                'deadLine',
                 DateType::class,
                 [
                     'label' => "Date limite",
@@ -46,7 +49,8 @@ class TaskType extends AbstractType
                     'attr'  => array(
                         'min' => ( new \DateTime() )->format('d-m-Y'),
                         'class' => '')
-                ])
+                ]
+            )
         ;
     }
 }

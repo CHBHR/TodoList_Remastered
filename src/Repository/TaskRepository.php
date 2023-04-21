@@ -50,7 +50,7 @@ class TaskRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-   
+
     public function findOrphantTasks(): array
     {
         return $this->createQueryBuilder('t')
