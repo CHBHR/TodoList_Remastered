@@ -74,6 +74,7 @@ php vendor/bin/phpunit --coverage-html coverage
 ## Resources
 
 Code quality has been analyzed with Codacy.
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/818ec0ea00c64315adf9d17d55a2f404)](https://app.codacy.com/gh/CHBHR/TodoList_Remastered/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 Code coverage was analyzed using PHPUnit and the HTML report.
 
