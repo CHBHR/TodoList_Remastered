@@ -34,15 +34,6 @@ class CreateUserControllerTest extends AbstractTestController
         $form['user[password][first]']='test';
         $form['user[password][second]']='test';
 
-        // test to see if it works eventually
-        // $form['user[roles][0]']->untick();
-        // $form['user[roles][1]']->select(true);
-
-        //print_r($form['user[roles]']);
-        // var_dump($form['user[roles][1]']->tick());
-        // die();
-        // $form['user[roles]']=true;
-
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/admin/users/list');

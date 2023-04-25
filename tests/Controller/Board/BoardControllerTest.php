@@ -40,7 +40,7 @@ class BoardControllerTest extends AbstractTestController
         
         // Get the user tasks
         $userRepository = static::getContainer()->get(UserRepository::class);
-        $userTest = $userRepository->findOneBy(['username'=>'TestUser2']);
+        $userTest = $userRepository->findOneBy(['username' =>'TestUser2']);
         $taskList = $userTest->getTasks();
         static::getContainer()->get(TaskRepository::class);
         $taskTitleList = [];
@@ -49,14 +49,14 @@ class BoardControllerTest extends AbstractTestController
             $taskTitleList[]  = $task->getTitle();
         }
 
-        // create comparative tasks list
+        // Create comparative tasks list
         $taskListTest = [
             "Task 1 - not done without deadline",
             "Task 2 - done without deadline",
             "Task 3 - not done with deadline"
         ];
 
-        // compare
+        // Compare
         $this->assertEquals($taskListTest[0], $taskTitleList[0]);
         $this->assertEquals($taskListTest[1], $taskTitleList[1]);
         $this->assertEquals($taskListTest[2], $taskTitleList[2]);

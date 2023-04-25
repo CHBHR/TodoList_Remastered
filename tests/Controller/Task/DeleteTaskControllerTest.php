@@ -40,7 +40,7 @@ class DeleteTaskControllerTest extends AbstractTestController
         $this->loginAsUser();
 
         $taskRepository = static::getContainer()->get(TaskRepository::class);
-        $taskTest = $taskRepository->findOneBy(['title'=>'Task 3 - not done with deadline']);
+        $taskTest = $taskRepository->findOneBy(['title' =>'Task 3 - not done with deadline']);
         $taskTestId = $taskTest->getId();
 
         $crawler = $this->client->request('GET', 'tasks/'.$taskTestId.'/delete');
