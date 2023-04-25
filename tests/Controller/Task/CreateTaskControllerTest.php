@@ -34,17 +34,15 @@ class CreateTaskControllerTest extends AbstractTestController
     {
         $this->loginAsUser();
 
-        //$datetime = new \DateTime();
-
         $crawler = $this->client->request('GET', '/tasks/create');
 
         $buttonCrawlerNode = $crawler->selectButton("Ajouter");
 
         $form = $buttonCrawlerNode->form();
 
-        $form['task[title]']='titre de test';
-        $form['task[content]']='contenu de test';
-        $form['task[hasDeadLine]']=false;
+        $form['task[title]'] ='titre de test';
+        $form['task[content]'] ='contenu de test';
+        $form['task[hasDeadLine]'] =false;
         
         // Here could go the testing for the deadline
 
@@ -70,10 +68,9 @@ class CreateTaskControllerTest extends AbstractTestController
 
         $form = $buttonCrawlerNode->form();
 
-        $form['task[title]']='';
-        $form['task[content]']='contenu de test';
-        $form['task[hasDeadLine]']=false;
-        // $form['task[deaLine]']='';
+        $form['task[title]'] ='';
+        $form['task[content]'] ='contenu de test';
+        $form['task[hasDeadLine]'] =false;
 
         //Will create an error
         $crawler = $this->client->submit($form);

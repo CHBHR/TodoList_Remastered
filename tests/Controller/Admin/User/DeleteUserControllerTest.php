@@ -27,7 +27,7 @@ class DeleteUserControllerTest extends AbstractTestController
     */
     public function deleteUserAsAdmin()
     {
-        //add check for task anonymization
+        // Add check for task anonymization.
         $this->loginAsAdmin();
 
         $userRepository = static::getContainer()->get(UserRepository::class);

@@ -25,15 +25,14 @@ class CreateTaskController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $dateTime = new \DateTime();
-            // On récupère le user et on l'assigne à la task avant le persist
+            // On récupère le user et on l'assigne à la task avant le persist.
             $user = $this->getUser();
             if (false === $user) {
                 $task->setuser(null);
-            } else {
+                } 
                 $task->setUser($user);
-            }
 
-            // Check si une deadline a été précisée sinon null
+            // Check si une deadline a été précisée sinon null.
             if (true === $form['hasDeadLine']->getData()) {
                 $task->setDeadLine($form['deadLine']->getData());
             } elseif (false === $form['hasDeadLine']->getData()) {

@@ -11,7 +11,7 @@ class EditTaskControllerTest extends AbstractTestController
     private $invalidTaskId = 52841612131;
 
     /** 
-     * @test 
+     * @test
     */
     public function editingNonExistantTaskShouldReturnNotFound()
     {
@@ -23,7 +23,7 @@ class EditTaskControllerTest extends AbstractTestController
     }
 
     /** 
-     * @test 
+     * @test
     */
     public function testEditTask()
     {
@@ -39,9 +39,9 @@ class EditTaskControllerTest extends AbstractTestController
 
         $form = $buttonCrawlerNode->form();
 
-        $form['task[title]']='titre de test modifié';
-        $form['task[content]']='contenu de test modifié';
-        $form['task[hasDeadLine]']=false;
+        $form['task[title]'] ='titre de test modifié';
+        $form['task[content]'] ='contenu de test modifié';
+        $form['task[hasDeadLine]'] =false;
 
         $this->client->submit($form);
 

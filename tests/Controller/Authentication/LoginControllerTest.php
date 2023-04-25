@@ -10,13 +10,13 @@ class LoginControllertest extends AbstractTestController
     {
         $crawler = $this->client->request('GET', '/login');
 
-        // select the button
+        // Select the button
         $buttonCrawlerNode = $crawler->selectButton('Connexion');
 
-        // retrieve the Form object for the form belonging to this button
+        // Retrieve the Form object for the form belonging to this button
         $form = $buttonCrawlerNode->form();
 
-        // set values on a form object
+        // Set values on a form object
         $form['_username'] = 'TestUser2';
         $form['_password'] = 'test';
 
@@ -28,13 +28,13 @@ class LoginControllertest extends AbstractTestController
     {
         $crawler = $this->client->request('GET', '/login');
 
-        // select the button
+        // Select the button
         $buttonCrawlerNode = $crawler->selectButton('Connexion');
 
-        // retrieve the Form object for the form belonging to this button
+        // Retrieve the Form object for the form belonging to this button
         $form = $buttonCrawlerNode->form();
 
-        // set values on a form object
+        // Set values on a form object
         $form['_username'] = 'WrongUserName';
         $form['_password'] = 'test';
 

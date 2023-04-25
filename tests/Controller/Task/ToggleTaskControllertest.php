@@ -32,7 +32,7 @@ class ToggleTaskControllerTest extends AbstractTestController
         $taskRepository = static::getContainer()->get(TaskRepository::class);
         $taskTest = $taskRepository->findOneBy(['title'=>'Task 1 - not done without deadline']);
         $taskTestId = $taskTest->getId();
-        $taskTestName =  $taskTest->getTitle();
+        $taskTestName = $taskTest->getTitle();
         
         $crawler = $this->client->request('GET', '/tasks/'.$taskTestId.'/toggle');
 

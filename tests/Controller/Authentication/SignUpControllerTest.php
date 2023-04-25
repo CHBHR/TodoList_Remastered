@@ -27,10 +27,10 @@ class SignUpControllerTest extends AbstractTestController
 
         $form = $buttonCrawlerNode->form();
 
-        $form['sign_up[email]']='test@gmail.com';
-        $form['sign_up[username]']='UserTestSignup';
-        $form['sign_up[password][first]']='test';
-        $form['sign_up[password][second]']='test';
+        $form['sign_up[email]'] ='test@gmail.com';
+        $form['sign_up[username]'] ='UserTestSignup';
+        $form['sign_up[password][first]'] ='test';
+        $form['sign_up[password][second]'] ='test';
 
         $this->client->submit($form);
 
@@ -53,10 +53,10 @@ class SignUpControllerTest extends AbstractTestController
 
         $form = $buttonCrawlerNode->form();
 
-        $form['sign_up[email]']='test@gmail.com';
-        $form['sign_up[username]']='UserTestSignup';
-        $form['sign_up[password][first]']='test';
-        $form['sign_up[password][second]']='test2';
+        $form['sign_up[email]'] ='test@gmail.com';
+        $form['sign_up[username]'] ='UserTestSignup';
+        $form['sign_up[password][first]'] ='test';
+        $form['sign_up[password][second]'] ='test2';
 
         $this->client->submit($form);
 

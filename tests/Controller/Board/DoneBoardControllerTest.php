@@ -7,7 +7,7 @@ use App\Tests\Controller\AbstractTestController;
 class DoneBoardControllerTest extends AbstractTestController
 {
     /** 
-     * @test 
+     * @test
     */
     public function testDoneBoardRedirectsIfNotConnected(): void
     {

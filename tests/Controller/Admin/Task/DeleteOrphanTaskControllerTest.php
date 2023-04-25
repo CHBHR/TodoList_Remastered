@@ -10,8 +10,8 @@ class DeleteOrphanTaskControllerTest extends AbstractTestController
 {
     private $invalidTaskId = 52841612131;
 
-    /** 
-     * @test 
+    /**
+     * @test
     */
     public function deleteOrphanTaskAsAdmin()
     {
@@ -29,7 +29,7 @@ class DeleteOrphanTaskControllerTest extends AbstractTestController
         $this->assertStringContainsString("La tâche a bien été supprimée.", $crawler->text());
     }
 
-    /** 
+    /**
      * @test 
     */
     public function deletingNonExistantTaskShouldReturnNotFound()

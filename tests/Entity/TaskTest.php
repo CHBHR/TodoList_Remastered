@@ -70,5 +70,4 @@ class TaskTest extends TestCase
         $this->task->setUser(new User());
         $this->assertInstanceOf(User::class, $this->task->getUser());
     }
-
 }

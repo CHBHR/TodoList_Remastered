@@ -16,7 +16,7 @@ class AdminBoardControllerTest extends AbstractTestController
         $this->assertSelectorTextContains('h1', 'Connexion');
     }
 
-    /** 
+    /**
      * @test 
     */
     public function testAdminDashboardIsUpWhenConnected()

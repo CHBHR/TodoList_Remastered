@@ -20,9 +20,9 @@ abstract class AbstractTestController extends WebTestCase
     protected function loginAsAdmin()
     {
         $userRepository = static::getContainer()->get(UserRepository::class);
-        // retrieve the test user
+        // Retrieve the test user.
         $testUser = $userRepository->findOneByEmail('user1@test.com');
-        // simulate $testUser being logged in
+        // Simulate $testUser being logged in.
         return $this->client->loginUser($testUser);
     }
 
